@@ -4,6 +4,16 @@ from sql_queries import create_table_queries, drop_table_queries
 
 
 def drop_tables(cur, conn):
+    """
+    Drops the database tables.
+
+    Parameters:
+    cur (psycopg2.extensions.cursor): The database cursor.
+    conn (psycopg2.extensions.connection): The database connection.
+
+    Returns:
+    None
+    """
     try:
         for query in drop_table_queries:
             cur.execute(query)
@@ -14,6 +24,16 @@ def drop_tables(cur, conn):
 
 
 def create_tables(cur, conn):
+    """
+    Creates database tables.
+
+    Parameters:
+    cur (psycopg2.extensions.cursor): The database cursor.
+    conn (psycopg2.extensions.connection): The database connection.
+
+    Returns:
+    None
+    """
     try:
         for query in create_table_queries:
             cur.execute(query)
@@ -25,6 +45,15 @@ def create_tables(cur, conn):
 
 
 def main():
+    """
+    Calls functions to drop and create tables.
+
+    Parameters:
+    None
+
+    Returns:
+    None
+    """
     try:
         config = configparser.ConfigParser()
         config.read("dwh.cfg")

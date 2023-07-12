@@ -4,6 +4,17 @@ from sql_queries import copy_table_queries, insert_table_queries
 
 
 def load_staging_tables(cur, conn):
+    """
+    Load data into staging tables.
+
+    Parameters:
+    cur (psycopg2.extensions.cursor): The database cursor.
+    conn (psycopg2.extensions.connection): The database connection.
+
+    Returns:
+    None
+
+    """
     try:
         for query in copy_table_queries:
             cur.execute(query)
@@ -14,6 +25,16 @@ def load_staging_tables(cur, conn):
 
 
 def insert_tables(cur, conn):
+    """
+    Insert data from staging tables to dim and fact tables.
+
+    Parameters:
+    cur (psycopg2.extensions.cursor): The database cursor.
+    conn (psycopg2.extensions.connection): The database connection.
+
+    Returns:
+    None
+    """
     try:
         for query in insert_table_queries:
             cur.execute(query)
@@ -26,6 +47,15 @@ def insert_tables(cur, conn):
 
 
 def main():
+    """
+    Calls functions to load data and insert them tables.
+
+    Parameters:
+    None
+
+    Returns:
+    None
+    """
     try:
         config = configparser.ConfigParser()
         config.read("dwh.cfg")
